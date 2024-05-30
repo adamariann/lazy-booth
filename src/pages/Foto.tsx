@@ -1,8 +1,39 @@
-import { HStack, Text, VStack } from "@chakra-ui/react";
-import formatDurationNumeric from "../lib/FormatDurationNumeric";
+import { Center, HStack, Image, Text, VStack } from "@chakra-ui/react";
+import { useEffect, useState } from "react";
+import CameraScreen from "../components/dependent/CameraScreen";
+import CountDown from "../components/dependent/CountDown";
+import FilterList from "../components/dependent/FilterList";
 
 export default function Foto() {
-  const initialTime = 60; // seconds
+  // Photo session 88 second
+  const initialTime = 3; // 10 seconds
+  const [ready, setReady] = useState<boolean>(false);
+  const [counter, setCounter] = useState<number>(1);
+  const [data] = useState<any[]>([
+    "./images/gear5.jpg",
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+  ]);
+
+  useEffect(() => {
+    if (counter === 8) {
+      console.log("Next script");
+    } else {
+      setTimeout(() => {
+        setReady(true);
+      }, 7000);
+    }
+  }, [counter]);
+
+  function onShutter() {
+    setReady(false);
+    setCounter(counter + 1);
+  }
 
   return (
     <HStack
@@ -12,19 +43,80 @@ export default function Foto() {
       gap={0}
       bg={"#191919"}
     >
-      <VStack w={"300px"} border={"1px solid red"}></VStack>
+      <VStack w={"300px"} align={"stretch"} overflowY={"auto"} gap={0}>
+        <Center p={4} bg={"#191919"} zIndex={2}>
+          <Text fontSize={32} className="display" color={"white"}>
+            Your Photos
+          </Text>
+        </Center>
+
+        <VStack
+          align={"stretch"}
+          px={4}
+          pb={4}
+          overflowY={"auto"}
+          className="scrollY scrollYkotak"
+        >
+          {data.map((d, i) => {
+            if (d === null) {
+              return (
+                <Center
+                  key={i}
+                  p={4}
+                  bg={"var(--divider)"}
+                  h={"150px"}
+                  flexShrink={0}
+                >
+                  <Text
+                    fontSize={52}
+                    color={"white"}
+                    opacity={0.2}
+                    className="display"
+                    fontWeight={600}
+                  >
+                    {i + 1}
+                  </Text>
+                </Center>
+              );
+            } else {
+              return (
+                <Center key={i} h={"150px"} flexShrink={0}>
+                  <Image h={"100%"} src={d} />
+                </Center>
+              );
+            }
+          })}
+        </VStack>
+      </VStack>
 
       <VStack
         flex={1}
-        border={"1px solid green"}
         bgImage={"./images/texture.png"}
         bgSize={"cover"}
         bgPos={"center"}
       >
-        <Text>{formatDurationNumeric(initialTime)}</Text>
+        {!ready && (
+          <Text fontSize={52} className="display" color={"white"} mt={2}>
+            {counter < 8 ? "Get Ready" : "Finished"}
+          </Text>
+        )}
+        {ready && (
+          <CountDown
+            initialSeconds={initialTime}
+            fontSize={52}
+            color={"white"}
+            className="display"
+            onFinished={onShutter}
+            format="second"
+            mt={2}
+          />
+        )}
+
+        {/* Camera Screen */}
+        <CameraScreen />
       </VStack>
 
-      <VStack w={"300px"} border={"1px solid blue"}></VStack>
+      <FilterList />
     </HStack>
   );
 }

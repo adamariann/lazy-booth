@@ -63,7 +63,7 @@ export default function Payment() {
           gap={0}
           // borderRadius={"0 0  16px 16px"}
         >
-          <Image src="./images/qr.png" maxW={"300px"} />
+          <Image boxSize={"300px"} src="./images/qr.png" maxW={"300px"} />
 
           <Button
             mt={6}

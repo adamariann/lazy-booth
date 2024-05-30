@@ -5,7 +5,7 @@ import formatDurationNumeric from "../../lib/FormatDurationNumeric";
 interface Props extends TextProps {
   initialSeconds: number;
   onFinished?: Function;
-  format?: "hour" | "minute";
+  format?: "hour" | "minute" | "second";
 }
 
 export default function CountDown({
@@ -31,7 +31,7 @@ export default function CountDown({
 
   return (
     <Text fontSize={20} fontWeight={600} textAlign={"center"} {...props}>
-      {formatDurationNumeric(seconds)}
+      {formatDurationNumeric(seconds, format)}
     </Text>
   );
 }
