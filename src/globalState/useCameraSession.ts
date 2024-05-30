@@ -1,7 +1,8 @@
+import { CameraKitSession } from "@snap/camera-kit/.";
 import { create } from "zustand";
 
 interface State {
-  cameraSession: any;
+  cameraSession: CameraKitSession | null;
 }
 
 interface Actions {
@@ -11,7 +12,7 @@ interface Actions {
 const useCameraSession = create<State & Actions>((set) => ({
   cameraSession: null,
   setCameraSession: (newCameraSession: any) =>
-    set({ setCameraSession: newCameraSession }),
+    set({ cameraSession: newCameraSession }),
 }));
 
 export default useCameraSession;

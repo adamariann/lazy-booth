@@ -1,6 +1,8 @@
 import { Center, HStack, Image, Text, VStack } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
-import CameraScreen from "../components/dependent/CameraScreen";
+import { useEffect, useRef, useState } from "react";
+import CameraScreen, {
+  CameraScreenHandle,
+} from "../components/dependent/CameraScreen";
 import CountDown from "../components/dependent/CountDown";
 import FilterList from "../components/dependent/FilterList";
 
@@ -19,6 +21,12 @@ export default function Foto() {
     null,
     null,
   ]);
+  const cameraScreenRef = useRef<CameraScreenHandle>(null);
+  const handleCaptureImage = () => {
+    if (cameraScreenRef.current) {
+      cameraScreenRef.current.captureImage();
+    }
+  };
 
   useEffect(() => {
     if (counter === 8) {
@@ -33,6 +41,7 @@ export default function Foto() {
   function onShutter() {
     setReady(false);
     setCounter(counter + 1);
+    handleCaptureImage();
   }
 
   return (
@@ -113,7 +122,7 @@ export default function Foto() {
         )}
 
         {/* Camera Screen */}
-        <CameraScreen />
+        <CameraScreen ref={cameraScreenRef} />
       </VStack>
 
       <FilterList />

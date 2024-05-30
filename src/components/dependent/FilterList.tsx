@@ -10,11 +10,11 @@ import {
 import { RiBardFill } from "@remixicon/react";
 import useFilterList from "../../globalState/useFilterList";
 import useCameraSession from "../../globalState/useCameraSession";
+import { Lens } from "@snap/camera-kit/.";
 
 export default function FilterList() {
   const { filterList } = useFilterList();
   const { cameraSession } = useCameraSession();
-  console.log(cameraSession);
 
   return (
     <VStack w={"300px"} align={"stretch"} overflowY={"auto"} gap={0}>
@@ -35,29 +35,38 @@ export default function FilterList() {
         className="scrollY scrollYkotak"
       >
         <SimpleGrid columns={2} gap={4}>
-          {filterList?.map((d: any, i: number) => {
+          {filterList?.map((d: Lens, i: number) => {
+            // console.log(d);
+            const ok = i > 0;
+
             return (
-              <VStack
-                key={i}
-                color={"white"}
-                bg={"var(--divider)"}
-                p={4}
-                cursor={"pointer"}
-                className="clicky"
-                onClick={() => {
-                  cameraSession.applyLens(d);
-                }}
-              >
-                <Image flexShrink={1} src={d.iconUrl} />
-                <Text
-                  textAlign={"center"}
-                  fontWeight={500}
-                  lineHeight={1.2}
-                  mt={2}
+              ok && (
+                <VStack
+                  key={i}
+                  color={"white"}
+                  bg={"var(--divider)"}
+                  p={4}
+                  cursor={"pointer"}
+                  className="clicky"
+                  onClick={() => {
+                    if (cameraSession) {
+                      cameraSession.applyLens(d);
+                    } else {
+                      console.log("titit");
+                    }
+                  }}
                 >
-                  {d.name}
-                </Text>
-              </VStack>
+                  <Image flexShrink={1} src={d.iconUrl} />
+                  <Text
+                    textAlign={"center"}
+                    fontWeight={500}
+                    lineHeight={1.2}
+                    mt={2}
+                  >
+                    {d.name}
+                  </Text>
+                </VStack>
+              )
             );
           })}
         </SimpleGrid>
