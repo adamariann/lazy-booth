@@ -6,7 +6,8 @@ export default function Landing() {
   return (
     <Container justify={"center"} p={8}>
       <VStack flex={1} justify={"center"}>
-        <Image src="logo512.png" maxW={"300px"} />
+        <Image src="./logo.gif" maxW={"200px"} mb={6} />
+        <Image src="./logos/logoWordMark.png" maxW={"300px"} />
         <Button
           w={"100%"}
           maxW={"300px"}
