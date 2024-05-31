@@ -9,7 +9,16 @@ interface Actions {
 }
 
 const useYourPhotos = create<State & Actions>((set) => ({
-  yourPhotos: ["./images/gear5.jpg", null, null, null, null, null, null, null],
+  yourPhotos: [
+    { id: 1, url: "./images/gear5.jpg" },
+    { id: 2, url: "https://via.placeholder.com/180" },
+    { id: 3, url: "https://via.placeholder.com/180" },
+    null,
+    null,
+    null,
+    null,
+    null,
+  ],
   setYourPhotos: (newYourPhotos) => set({ yourPhotos: newYourPhotos }),
 }));
 

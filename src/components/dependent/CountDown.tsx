@@ -30,7 +30,7 @@ export default function CountDown({
   }, [seconds, onFinished]);
 
   return (
-    <Text fontSize={20} fontWeight={600} textAlign={"center"} {...props}>
+    <Text fontSize={20} textAlign={"center"} {...props}>
       {formatDurationNumeric(seconds, format)}
     </Text>
   );

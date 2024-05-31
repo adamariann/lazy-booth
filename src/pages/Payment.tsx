@@ -87,6 +87,9 @@ export default function Payment() {
 
       <Wrap spacingX={8} spacingY={4} mt={"auto"}>
         <WrapItem>
+          <Image src="./logos/payments/qris.png" h={"40px"} />
+        </WrapItem>
+        <WrapItem>
           <Image src="./logos/payments/gopay.png" h={"40px"} />
         </WrapItem>
         <WrapItem>
