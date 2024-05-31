@@ -7,8 +7,8 @@ import CountDown from "../components/dependent/CountDown";
 import FilterList from "../components/dependent/FilterList";
 
 export default function Foto() {
-  // Photo session 88 second
-  const initialTime = 3; // 10 seconds
+  // Photo session 80 second
+  const initialTime = 5; // 5 seconds
   const [ready, setReady] = useState<boolean>(false);
   const [counter, setCounter] = useState<number>(1);
   const [data] = useState<any[]>([
@@ -34,7 +34,7 @@ export default function Foto() {
     } else {
       setTimeout(() => {
         setReady(true);
-      }, 7000);
+      }, 5000);
     }
   }, [counter]);
 

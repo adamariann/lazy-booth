@@ -7,6 +7,7 @@ import Payment from "./pages/Payment";
 import globalTheme from "./theme/globalTheme";
 import MissingPage from "./pages/errors/MissingPage";
 import Foto from "./pages/Foto";
+import Edit from "./pages/Edit";
 
 export const App = () => (
   <DndContext>
@@ -16,6 +17,7 @@ export const App = () => (
           <Route path="/" element={<Landing />} />
           <Route path="/payment" element={<Payment />} />
           <Route path="/foto" element={<Foto />} />
+          <Route path="/edit" element={<Edit />} />
           <Route path="/*" element={<MissingPage />} />
         </Routes>
       </BrowserRouter>
