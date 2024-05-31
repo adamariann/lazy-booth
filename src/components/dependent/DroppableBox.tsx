@@ -21,7 +21,8 @@ const DroppableBox = ({ id, onDrop, photoUrl }: Props) => {
       ref={drop}
       aspectRatio={3 / 2}
       transition={"200ms"}
-      bg={isOver ? "p.500" : "white"}
+      bg={isOver ? "p.500" : "gray.100"}
+      w={"100%"}
     >
       {photoUrl ? (
         <Image

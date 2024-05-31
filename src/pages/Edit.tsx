@@ -1,12 +1,12 @@
 import { HStack, VStack } from "@chakra-ui/react";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
+import { TouchBackend } from "react-dnd-touch-backend";
 import CountDown from "../components/dependent/CountDown";
 import DraggableYourPhotos from "../components/dependent/DraggableYourPhotos";
-import FilterList from "../components/dependent/FilterList";
+import FrameList from "../components/independent/FrameList";
 import PhotoGrid from "../components/independent/PhotoGrid";
 import isTouchDevice from "../lib/isTouchDevice";
-import { TouchBackend } from "react-dnd-touch-backend";
 
 export default function Edit() {
   const initialTime = 40; // 40 seconds
@@ -50,7 +50,7 @@ export default function Edit() {
           <PhotoGrid />
         </VStack>
 
-        <FilterList />
+        <FrameList />
       </HStack>
     </DndProvider>
   );

@@ -41,7 +41,7 @@ export default function Foto() {
   function onShutter() {
     setReady(false);
     setCounter(counter + 1);
-    // handleCaptureImage();
+    handleCaptureImage();
   }
 
   return (
@@ -52,7 +52,7 @@ export default function Foto() {
       gap={0}
       bg={"#191919"}
     >
-      <VStack w={"300px"} align={"stretch"} overflowY={"auto"} gap={0}>
+      <VStack w={250} align={"stretch"} overflowY={"auto"} gap={0}>
         <Center p={4} bg={"#191919"} zIndex={2}>
           <Text fontSize={32} className="display" color={"white"}>
             Your Photos
@@ -73,7 +73,7 @@ export default function Foto() {
                   key={i}
                   p={4}
                   bg={"var(--divider)"}
-                  h={"150px"}
+                  aspectRatio={3 / 2}
                   flexShrink={0}
                 >
                   <Text
@@ -89,7 +89,7 @@ export default function Foto() {
               );
             } else {
               return (
-                <Center key={i} h={"150px"} flexShrink={0}>
+                <Center key={i} aspectRatio={3 / 2} flexShrink={0}>
                   <Image h={"100%"} src={d} objectFit={"cover"} />
                 </Center>
               );

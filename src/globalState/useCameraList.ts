@@ -10,7 +10,7 @@ interface Actions {
 
 const useCameraList = create<State & Actions>((set) => ({
   cameraList: false,
-  setCameraList: (newCameraList: any) => set({ setCameraList: newCameraList }),
+  setCameraList: (newCameraList: any) => set({ cameraList: newCameraList }),
 }));
 
 export default useCameraList;

@@ -5,6 +5,7 @@ import {
   Image,
   SimpleGrid,
   Text,
+  Tooltip,
   VStack,
 } from "@chakra-ui/react";
 import { RiBardFill } from "@remixicon/react";
@@ -17,7 +18,7 @@ export default function FilterList() {
   const { cameraSession } = useCameraSession();
 
   return (
-    <VStack w={"300px"} align={"stretch"} overflowY={"auto"} gap={0}>
+    <VStack w={250} align={"stretch"} overflowY={"auto"} gap={0}>
       <Center p={4} bg={"#191919"} zIndex={2}>
         <HStack color={"white"}>
           <Icon as={RiBardFill} fontSize={24} />
@@ -41,31 +42,36 @@ export default function FilterList() {
 
             return (
               ok && (
-                <VStack
-                  key={i}
-                  color={"white"}
-                  bg={"var(--divider)"}
-                  p={4}
-                  cursor={"pointer"}
-                  className="clicky"
-                  onClick={() => {
-                    if (cameraSession) {
-                      cameraSession.applyLens(d);
-                    } else {
-                      console.log("titit");
-                    }
-                  }}
-                >
-                  <Image flexShrink={1} src={d.iconUrl} />
-                  <Text
-                    textAlign={"center"}
-                    fontWeight={500}
-                    lineHeight={1.2}
-                    mt={2}
+                <Tooltip label={d.name} placement="top">
+                  <VStack
+                    key={i}
+                    color={"white"}
+                    bg={"var(--divider)"}
+                    p={4}
+                    cursor={"pointer"}
+                    className="clicky"
+                    onClick={() => {
+                      if (cameraSession) {
+                        cameraSession.applyLens(d);
+                      } else {
+                        console.log("titit");
+                      }
+                    }}
                   >
-                    {d.name}
-                  </Text>
-                </VStack>
+                    <Image flexShrink={1} src={d.iconUrl} />
+                    <Text
+                      textAlign={"center"}
+                      fontWeight={500}
+                      lineHeight={1.2}
+                      mt={2}
+                      fontSize={14}
+                      opacity={0.6}
+                      noOfLines={1}
+                    >
+                      {d.name}
+                    </Text>
+                  </VStack>
+                </Tooltip>
               )
             );
           })}
