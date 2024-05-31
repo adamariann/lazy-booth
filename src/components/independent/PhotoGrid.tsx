@@ -5,12 +5,12 @@ import DroppableBox from "../dependent/DroppableBox";
 
 const PhotoGrid: React.FC = () => {
   const { yourPhotos } = useYourPhotos();
-  const [box1, setBox1] = useState<any | null>(null);
-  const [box2, setBox2] = useState<any | null>(null);
-  const [box3, setBox3] = useState<any | null>(null);
-  const [box4, setBox4] = useState<any | null>(null);
-  const [box5, setBox5] = useState<any | null>(null);
-  const [box6, setBox6] = useState<any | null>(null);
+  const [box1, setBox1] = useState<any | null>(yourPhotos[0]?.url || null);
+  const [box2, setBox2] = useState<any | null>(yourPhotos[1]?.url || null);
+  const [box3, setBox3] = useState<any | null>(yourPhotos[2]?.url || null);
+  const [box4, setBox4] = useState<any | null>(yourPhotos[3]?.url || null);
+  const [box5, setBox5] = useState<any | null>(yourPhotos[4]?.url || null);
+  const [box6, setBox6] = useState<any | null>(yourPhotos[5]?.url || null);
 
   const handleDrop = (photoId: number, boxId: number) => {
     const photo = yourPhotos.find((p) => p.id === photoId);
