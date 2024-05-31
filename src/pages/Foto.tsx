@@ -90,7 +90,7 @@ export default function Foto() {
             } else {
               return (
                 <Center key={i} h={"150px"} flexShrink={0}>
-                  <Image h={"100%"} src={d} />
+                  <Image h={"100%"} src={d} objectFit={"cover"} />
                 </Center>
               );
             }
@@ -105,7 +105,7 @@ export default function Foto() {
         bgPos={"center"}
       >
         {!ready && (
-          <Text fontSize={52} className="display" color={"white"} mt={2}>
+          <Text fontSize={52} className="display" color={"white"} my={2}>
             {counter < 8 ? "Get Ready" : "Finished"}
           </Text>
         )}
@@ -117,7 +117,7 @@ export default function Foto() {
             className="display"
             onFinished={onShutter}
             format="second"
-            mt={2}
+            my={2}
           />
         )}
 
