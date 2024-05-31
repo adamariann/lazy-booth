@@ -80,9 +80,9 @@ export default function Payment() {
         </VStack>
 
         <Text mt={6} textAlign={"center"}>
-          Kode QR kadaluarsa dalam
+          Kode QR akan kadaluarsa dalam
         </Text>
-        <CountDown initialSeconds={5} onFinished={refreshQr} />
+        <CountDown initialSeconds={60} onFinished={refreshQr} />
       </VStack>
 
       <Wrap spacingX={8} spacingY={4} mt={"auto"}>
