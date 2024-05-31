@@ -41,7 +41,7 @@ export default function Foto() {
   function onShutter() {
     setReady(false);
     setCounter(counter + 1);
-    handleCaptureImage();
+    // handleCaptureImage();
   }
 
   return (

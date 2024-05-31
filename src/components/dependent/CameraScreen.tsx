@@ -131,7 +131,7 @@ const CameraScreen = forwardRef<CameraScreenHandle, CameraScreenProps>(
               }}
             ></canvas>
           </Box>
-          <Button onClick={captureImage}>Capture Image</Button>
+          {/* <Button onClick={captureImage}>Capture Image</Button> */}
         </VStack>
       </Flex>
     );
