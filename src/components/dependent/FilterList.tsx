@@ -42,9 +42,8 @@ export default function FilterList() {
 
             return (
               ok && (
-                <Tooltip label={d.name} placement="top">
+                <Tooltip key={i} label={d.name} placement="top">
                   <VStack
-                    key={i}
                     color={"white"}
                     bg={"var(--divider)"}
                     p={4}

@@ -77,12 +77,14 @@ const PhotoGrid = () => {
         align={"stretch"}
         position={"relative"}
       >
-        <Image
-          src={`./images/frames/${frameList[activeFrame].bg}`}
-          position={"absolute"}
-          bottom={0}
-          zIndex={2}
-        />
+        {activeFrame > 0 && (
+          <Image
+            src={`./images/frames/${frameList[activeFrame].bg}`}
+            position={"absolute"}
+            bottom={0}
+            zIndex={2}
+          />
+        )}
 
         <VStack gap={6} w={"50%"} px={6} justify={"center"} zIndex={3}>
           <DroppableBox

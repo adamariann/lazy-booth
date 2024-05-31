@@ -1,10 +1,11 @@
-import { Center, HStack, Image, Text, VStack } from "@chakra-ui/react";
+import { Button, Center, HStack, Image, Text, VStack } from "@chakra-ui/react";
 import { useEffect, useRef, useState } from "react";
 import CameraScreen, {
   CameraScreenHandle,
 } from "../components/dependent/CameraScreen";
 import CountDown from "../components/dependent/CountDown";
 import FilterList from "../components/dependent/FilterList";
+import { useNavigate } from "react-router-dom";
 
 export default function Foto() {
   // Photo session 80 second
@@ -21,6 +22,7 @@ export default function Foto() {
     null,
     null,
   ]);
+  const [start, setStart] = useState<boolean>(false);
   const cameraScreenRef = useRef<CameraScreenHandle>(null);
   const handleCaptureImage = () => {
     if (cameraScreenRef.current) {
@@ -28,19 +30,22 @@ export default function Foto() {
     }
   };
 
+  const navigate = useNavigate();
+
   useEffect(() => {
     if (counter === 8) {
-      console.log("Next script");
+      navigate("/edit");
     } else {
       setTimeout(() => {
         setReady(true);
       }, 5000);
     }
-  }, [counter]);
+  }, [counter, navigate]);
 
   function onShutter() {
     setReady(false);
     setCounter(counter + 1);
+
     handleCaptureImage();
   }
 
@@ -104,12 +109,34 @@ export default function Foto() {
         bgSize={"cover"}
         bgPos={"center"}
       >
-        {!ready && (
+        {!start && (
+          <>
+            <Text fontSize={52} className="display" color={"white"} my={2}>
+              Camera Test
+            </Text>
+            <Text className="display" color={"white"} my={2} fontSize={20}>
+              Click Start to start photo session
+            </Text>
+            <Button
+              colorScheme="ap"
+              className="btn-ap clicky"
+              size={"lg"}
+              w={"180px"}
+              h={"80px"}
+              onClick={() => {
+                setStart(true);
+              }}
+            >
+              <Text fontSize={20}>Start</Text>
+            </Button>
+          </>
+        )}
+        {start && !ready && (
           <Text fontSize={52} className="display" color={"white"} my={2}>
             {counter < 8 ? "Get Ready" : "Finished"}
           </Text>
         )}
-        {ready && (
+        {start && ready && (
           <CountDown
             initialSeconds={initialTime}
             fontSize={52}
